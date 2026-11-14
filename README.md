@@ -1,6 +1,10 @@
 # BankHack — Образовательная CTF-лаборатория
 <img width="1672" height="941" alt="Взлом Банка" src="https://github.com/user-attachments/assets/e18035d1-36d4-4061-9b6d-f4462cb4c18e" />
-
+![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
+![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white)
+![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=black)
+![CTF](https://img.shields.io/badge/CTF-Web%20Security-red)
 > ⚠️ **DISCLAIMER / ДИСКЛЕЙМЕР**
 >
 > Проект создан **исключительно в образовательных целях** и предназначен **только для локального запуска в изолированной среде** (собственная машина, отдельная VM или выделенный тестовый контур).
