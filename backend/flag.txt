@@ -1,0 +1,1 @@
+CTF{b4nk_l0g1c_pwn3d}

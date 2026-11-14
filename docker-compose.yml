@@ -1,0 +1,54 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: bankhack-db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-bankhack}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-bankhack_secret}
+      POSTGRES_DB: ${POSTGRES_DB:-bankhack}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-bankhack} -d ${POSTGRES_DB:-bankhack}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - bankhack_net
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: bankhack-backend
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-bankhack}:${POSTGRES_PASSWORD:-bankhack_secret}@db:5432/${POSTGRES_DB:-bankhack}
+      JWT_SECRET: ${JWT_SECRET:-supersecret123}
+      JWT_ALGORITHM: HS256
+      ACCESS_TOKEN_EXPIRE_MINUTES: 120
+    depends_on:
+      db:
+        condition: service_healthy
+    expose:
+      - "8000"
+    networks:
+      - bankhack_net
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: bankhack-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - bankhack_net
+
+volumes:
+  postgres_data:
+
+networks:
+  bankhack_net:
+    driver: bridge
