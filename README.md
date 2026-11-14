@@ -1,5 +1,5 @@
 # BankHack — Образовательная CTF-лаборатория
-
+<img width="1672" height="941" alt="Взлом Банка" src="https://github.com/user-attachments/assets/e18035d1-36d4-4061-9b6d-f4462cb4c18e" />
 
 > ⚠️ **DISCLAIMER / ДИСКЛЕЙМЕР**
 >
